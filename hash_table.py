@@ -1,20 +1,23 @@
-class Node:
-    # Lista Encadeada.
+from typing import Optional
 
-    def __init__(self, acronym, state_name):
+
+class Node:
+    # Lista Encadeada
+
+    def __init__(self, acronym: str, state_name: str) -> None:
         self.acronym = acronym
         self.state_name = state_name
         self.next = None
 
 
 class HashTable:
-    def __init__(self):
+    def __init__(self) -> None:
         # Inicializa a tabela com 10 posições definidas como None
-        self.table = [None] * 10
+        self.table: list[Optional[Node]] = [None] * 10
 
     @staticmethod
-    def hash_function(self, acronym):
-        # Retorna a posição do hash baseada em valores ASCII ou regras específicas.
+    def hash_function(acronym: str) -> int:
+        # Retorna a posição do hash baseada em valores ASCII ou regras específicas
         if acronym == "DF":
             return 7
 
@@ -22,7 +25,7 @@ class HashTable:
         position = (ord(acronym[0]) + ord(acronym[1])) % 10
         return position
 
-    def insert(self, acronym, state_name):
+    def insert(self, acronym: str, state_name: str) -> None:
         # Insere um novo estado no início da lista
         position = self.hash_function(acronym)
         new_node = Node(acronym, state_name)
@@ -34,8 +37,8 @@ class HashTable:
             new_node.next = self.table[position]
             self.table[position] = new_node
 
-    def display(self):
-        # Imprime a Tabela Hash mostrando o encadeamento.
+    def display(self) -> None:
+        # Dá um print na Tabela Hash mostrando o encadeamento
         for i in range(10):
             print(f"{i}: ", end="")
             current = self.table[i]
@@ -48,37 +51,53 @@ class HashTable:
                 print("None")
 
 
-def run_hash_system():
+def run_hash_system() -> None:
     hash_map = HashTable()
 
-    # H. Exibe tabela vazia
-    print("Initial Empty Hash Table")
+    print("Tabela HASH")
     hash_map.display()
 
-    # F. Insere os 26 estados + DF (Hardcoded)
     brazilian_states = [
-        ("AC", "Acre"), ("AL", "Alagoas"), ("AP", "Amapá"), ("AM", "Amazonas"),
-        ("BA", "Bahia"), ("CE", "Ceará"), ("DF", "Distrito Federal"), ("ES", "Espírito Santo"),
-        ("GO", "Goiás"), ("MA", "Maranhão"), ("MT", "Mato Grosso"), ("MS", "Mato Grosso do Sul"),
-        ("MG", "Minas Gerais"), ("PA", "Pará"), ("PB", "Paraíba"), ("PR", "Paraná"),
-        ("PE", "Pernambuco"), ("PI", "Piauí"), ("RJ", "Rio de Janeiro"), ("RN", "Rio Grande do Norte"),
-        ("RS", "Rio Grande do Sul"), ("RO", "Rondônia"), ("RR", "Roraima"), ("SC", "Santa Catarina"),
-        ("SP", "São Paulo"), ("SE", "Sergipe"), ("TO", "Tocantins")
+        ("AC", "Acre"),
+        ("AL", "Alagoas"),
+        ("AP", "Amapá"),
+        ("AM", "Amazonas"),
+        ("BA", "Bahia"),
+        ("CE", "Ceará"),
+        ("DF", "Distrito Federal"),
+        ("ES", "Espírito Santo"),
+        ("GO", "Goiás"),
+        ("MA", "Maranhão"),
+        ("MT", "Mato Grosso"),
+        ("MS", "Mato Grosso do Sul"),
+        ("MG", "Minas Gerais"),
+        ("PA", "Pará"),
+        ("PB", "Paraíba"),
+        ("PR", "Paraná"),
+        ("PE", "Pernambuco"),
+        ("PI", "Piauí"),
+        ("RJ", "Rio de Janeiro"),
+        ("RN", "Rio Grande do Norte"),
+        ("RS", "Rio Grande do Sul"),
+        ("RO", "Rondônia"),
+        ("RR", "Roraima"),
+        ("SC", "Santa Catarina"),
+        ("SP", "São Paulo"),
+        ("SE", "Sergipe"),
+        ("TO", "Tocantins")
     ]
 
     for acronym, name in brazilian_states:
         hash_map.insert(acronym, name)
 
-    # I. Exibe tabela com as 27 entradas
     print()
-    print("Hash Table with 27 Brazilian States")
+    print("Tabela HASH com os 27 estados brasileiros")
     hash_map.display()
 
     fictitious_name = "GABRIEL RIBEIRO"
     fictitious_acronym = "GR"
     hash_map.insert(fictitious_acronym, fictitious_name)
 
-    # J. Exibição final
     print()
     print(f"Final Hash Table with Fictitious State ({fictitious_acronym})")
     hash_map.display()

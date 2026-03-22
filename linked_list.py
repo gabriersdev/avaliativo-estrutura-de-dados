@@ -1,19 +1,22 @@
-class Node:
-    # Fila 
+from typing import Optional
 
-    def __init__(self, number, color):
+
+class Node:
+    # Fila
+
+    def __init__(self, number: int, color: str) -> None:
         self.number = number
         self.color = color
         self.next = None
 
 
 class LinkedList:
-    def __init__(self):
-        self.head = None
-        self.green_counter = 1  # Contador para cartões Verdes (V) (começa em 1)
-        self.yellow_counter = 201  # Contador para cartões Amarelos (A) (começa em 201)
+    def __init__(self) -> None:
+        self.head: Optional[Node] = None
+        self.green_counter: int = 1  # Contador para cartões Verdes (V) (começa em 1)
+        self.yellow_counter: int = 201  # Contador para cartões Amarelos (A) (começa em 201)
 
-    def insert_without_priority(self, node):
+    def insert_without_priority(self, node: Node) -> None:
         # Adiciona o nó ao final da lista.
         if self.head is None:
             self.head = node
@@ -23,7 +26,7 @@ class LinkedList:
                 current = current.next
             current.next = node
 
-    def insert_with_priority(self, node):
+    def insert_with_priority(self, node: Node) -> None:
         # Insere o nó depois de todos os nós 'A' mas antes de qualquer nó 'V'.
         if self.head is None:
             self.head = node
@@ -43,7 +46,7 @@ class LinkedList:
             node.next = self.head
             self.head = node
 
-    def insert(self):
+    def insert(self) -> None:
         color = input("Enter card color (A/V): ").upper().strip()
         while color not in ["A", "V"]:
             color = input("Invalid color. Please enter A or V: ").upper().strip()
@@ -66,7 +69,7 @@ class LinkedList:
 
         print(f"Patient [{color}, {num}] added to the queue.")
 
-    def display_wait_list(self):
+    def display_wait_list(self) -> None:
         if self.head is None:
             print("The waitlist is currently empty.")
             return
@@ -78,7 +81,7 @@ class LinkedList:
             current = current.next
         print()
 
-    def serve_patient(self):
+    def serve_patient(self) -> None:
         if self.head is None:
             print("No patients in queue to serve.")
             return
@@ -88,7 +91,7 @@ class LinkedList:
         print(f"Calling patient with card color {removed_node.color} and number {removed_node.number} for service.")
 
 
-def main_menu():
+def main_menu() -> None:
     queue = LinkedList()
     while True:
         print("\n1 – Add patient to queue")
