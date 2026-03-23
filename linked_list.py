@@ -47,9 +47,9 @@ class LinkedList:
             self.head = node
 
     def insert(self) -> None:
-        color = input("Enter card color (A/V): ").upper().strip()
+        color = input("Digite a cor do cartão (A/V): ").upper().strip()
         while color not in ["A", "V"]:
-            color = input("Invalid color. Please enter A or V: ").upper().strip()
+            color = input("Cor inválida. Digite A ou V: ").upper().strip()
 
         if color == "V":
             num = self.green_counter
@@ -67,15 +67,15 @@ class LinkedList:
         elif color == "A":
             self.insert_with_priority(new_node)
 
-        print(f"Patient [{color}, {num}] added to the queue.")
+        print(f"Paciente [{color}, {num}] adicionado à fila.")
 
     def display_wait_list(self) -> None:
         if self.head is None:
-            print("The waitlist is currently empty.")
+            print("A fila de espera está vazia.")
             return
 
         current = self.head
-        print("Queue -> ", end="")
+        print("Fila -> ", end="")
         while current:
             print(f"[{current.color}, {current.number}]", end=" ")
             current = current.next
@@ -83,22 +83,22 @@ class LinkedList:
 
     def serve_patient(self) -> None:
         if self.head is None:
-            print("No patients in queue to serve.")
+            print("Nenhum paciente na fila para atender.")
             return
 
         removed_node = self.head
         self.head = self.head.next
-        print(f"Calling patient with card color {removed_node.color} and number {removed_node.number} for service.")
+        print(f"Chamando paciente com cartão cor {removed_node.color} e número {removed_node.number} para atendimento.")
 
 
 def main_menu() -> None:
     queue = LinkedList()
     while True:
-        print("\n1 – Add patient to queue")
-        print("2 – Show patients in queue")
-        print("3 – Call patient")
-        print("4 – Exit")
-        choice = input("Select an option: ")
+        print("\n1 – Adicionar paciente à fila")
+        print("2 – Mostrar pacientes na fila")
+        print("3 – Chamar paciente")
+        print("4 – Sair")
+        choice = input("Selecione uma opção: ")
 
         if choice == '1':
             queue.insert()
@@ -107,10 +107,10 @@ def main_menu() -> None:
         elif choice == '3':
             queue.serve_patient()
         elif choice == '4':
-            print("Exiting system...")
+            print("Saindo do sistema...")
             break
         else:
-            print("Invalid option. Please try again.")
+            print("Opção inválida. Tente novamente.")
 
 
 if __name__ == "__main__":

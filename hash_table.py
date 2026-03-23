@@ -43,12 +43,12 @@ class HashTable:
             print(f"{i}: ", end="")
             current = self.table[i]
             if current is None:
-                print("None")
+                print("Nenhum")
             else:
                 while current:
                     print(f"{current.acronym}", end=" -> ")
                     current = current.next
-                print("None")
+                print("Nenhum")
 
 
 def run_hash_system() -> None:
@@ -99,7 +99,7 @@ def run_hash_system() -> None:
     hash_map.insert(fictitious_acronym, fictitious_name)
 
     print()
-    print(f"Final Hash Table with Fictitious State ({fictitious_acronym})")
+    print(f"Tabela HASH final com Estado Fictício ({fictitious_acronym})")
     hash_map.display()
 
 
